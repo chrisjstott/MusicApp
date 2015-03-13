@@ -1,0 +1,35 @@
+<form action="<%= albums_url %>" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="album_title">Name</label>
+  <input
+    type="text"
+    name="album[title]"
+    id="album_title"
+    value="<%= @album.title %>"
+  >
+  <br><br>
+
+  <label for="album_band_id">Band</label>
+  <select name="album[band_id]" id="album_band_id">
+    <% @bands.each do |band| %>
+      <option value="<%= band.id %>"
+      <%= 'selected' if band.id == @band_id.to_i %> >
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+  <br><br>
+
+
+  <input type="radio" name="album[live]" value="false" id="album_live_false">
+  <label for="album_live_false">Studio Album</label>
+  <br>
+  <input type="radio" name="album[live]" value="true", id="album_live_true">
+  <label for="album_live_true">Live Album</label>
+  <br><br>
+
+  <input type="submit" value="SUBMIT">
+
+</form>
